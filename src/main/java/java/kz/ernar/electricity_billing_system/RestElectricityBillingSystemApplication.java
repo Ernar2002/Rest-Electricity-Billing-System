@@ -1,4 +1,4 @@
-package kz.iitu.itse1905.damir.rest_electricity_billing_system;
+package java.kz.ernar.electricity_billing_system;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
