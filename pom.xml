@@ -8,7 +8,7 @@
         <version>2.6.7</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>kz.iitu.itse1905.damir</groupId>
+    <groupId>kz.iitu.itse1905.damir.rest_electricity_billing_system</groupId>
     <artifactId>Rest_Electricity_Billing_System</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Rest_Electricity_Billing_System</name>

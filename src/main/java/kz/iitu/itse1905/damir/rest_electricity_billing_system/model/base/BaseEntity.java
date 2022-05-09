@@ -1,10 +1,11 @@
-package java.kz.ernar.electricity_billing_system.model;
+package kz.iitu.itse1905.damir.rest_electricity_billing_system.model.base;
 
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import javax.persistence.MappedSuperclass;
+import kz.iitu.itse1905.damir.rest_electricity_billing_system.model.enums.EActive;
 import java.util.Date;
 
 @MappedSuperclass

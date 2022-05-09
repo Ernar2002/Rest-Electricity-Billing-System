@@ -1,4 +1,4 @@
-package java.kz.ernar.electricity_billing_system.service;
+package kz.iitu.itse1905.damir.rest_electricity_billing_system.service;
 
 import java.util.List;
 
