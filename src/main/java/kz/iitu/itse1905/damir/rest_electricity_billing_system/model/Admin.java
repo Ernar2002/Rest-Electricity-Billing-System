@@ -10,7 +10,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "roles")
+@Table(name = "admin")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
