@@ -49,11 +49,11 @@ public class User extends BaseEntity {
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date dof;
 
-//    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(name = "user_roles",
-//            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-//            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
-//    @JsonManagedReference
-//    @EqualsAndHashCode.Exclude
-//    private Set<Role> roles;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
+    @JsonManagedReference
+    @EqualsAndHashCode.Exclude
+    private Set<Role> roles;
 }
