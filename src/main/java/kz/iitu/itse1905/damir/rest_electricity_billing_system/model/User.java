@@ -37,17 +37,13 @@ public class User extends BaseEntity {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    private String patronymic;
-
     @Column(name = "phone_number")
     private String phoneNumber;
 
     @Column(name = "iin")
     private String iin;
 
-    @Column(name = "birthday")
-    @JsonFormat(pattern = "yyyy-mm-dd")
-    private Date dof;
+    private String address;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
@@ -56,4 +52,10 @@ public class User extends BaseEntity {
     @JsonManagedReference
     @EqualsAndHashCode.Exclude
     private Set<Role> roles;
+
+    @OneToMany(mappedBy="user")
+    private Set<Bill> bills;
+
+    @OneToMany(mappedBy="user")
+    private Set<Complaint> complaints;
 }
