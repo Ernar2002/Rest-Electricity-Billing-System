@@ -116,7 +116,7 @@ ALTER TABLE bill
 --
 -- Indexes for table `complaint`
 --
-ALTER TABLE complaint
+ALTER TABLE complaints
     ADD PRIMARY KEY (id);
 --ADD KEY aid (aid),
 --ADD KEY uid (uid);
@@ -124,8 +124,8 @@ ALTER TABLE complaint
 --
 -- Indexes for table `transaction`
 --
-ALTER TABLE transaction
-    ADD PRIMARY KEY (id)
+ALTER TABLE transactions
+    ADD PRIMARY KEY (id);
 --ADD KEY bid (bid);
 
 --
@@ -138,18 +138,16 @@ ALTER TABLE users
 -- Constraints for table `bill`
 --
 ALTER TABLE bill
-    ADD CONSTRAINT bill_ibfk_1 FOREIGN KEY (aid) REFERENCES admin (id) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT bill_ibfk_2 FOREIGN KEY (uid) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT bill_ibfk_2 FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `complaint`
 --
-ALTER TABLE complaint
-    ADD CONSTRAINT complaint_ibfk_1 FOREIGN KEY (aid) REFERENCES admin (id) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT complaint_ibfk_2 FOREIGN KEY (uid) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE complaints
+  ADD CONSTRAINT complaint_ibfk_2 FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `transaction`
 --
-ALTER TABLE transaction
-    ADD CONSTRAINT transaction_ibfk_1 FOREIGN KEY (bid) REFERENCES bill (id) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE transactions
+    ADD CONSTRAINT transaction_ibfk_1 FOREIGN KEY (bill_id) REFERENCES bill (id) ON DELETE CASCADE ON UPDATE CASCADE;
