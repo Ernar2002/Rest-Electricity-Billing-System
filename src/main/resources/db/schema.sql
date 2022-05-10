@@ -7,7 +7,9 @@ CREATE TABLE admin (
                        id serial NOT NULL,
                        name varchar(40) NOT NULL,
                        email varchar(40) NOT NULL,
-                       pass varchar(20) NOT NULL
+                       pass varchar(20) NOT NULL,
+                       active varchar NOT NULL,
+                       created date NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -18,13 +20,14 @@ CREATE TABLE admin (
 
 CREATE TABLE bill (
                       id serial NOT NULL,
-                      aid int NOT NULL,
-                      uid int NOT NULL,
+                      user_id int NOT NULL,
                       units int NOT NULL,
                       amount decimal(10,2) NOT NULL,
                       status varchar(10) NOT NULL,
-                      bdate date NOT NULL,
-                      ddate date NOT NULL
+                      start_date date NOT NULL,
+                      end_date date NOT NULL,
+                      active varchar NOT NULL,
+                      created date NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -33,12 +36,12 @@ CREATE TABLE bill (
 -- Table structure for table `complaint`
 --
 
-CREATE TABLE complaint (
+CREATE TABLE complaints (
                            id serial NOT NULL,
-                           uid int NOT NULL,
-                           aid int NOT NULL,
-                           complaint varchar(140) NOT NULL,
-                           status varchar(40) NOT NULL
+                           user_id int NOT NULL,
+                           text varchar(140) NOT NULL,
+                           active varchar NOT NULL,
+                           created date NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -47,12 +50,14 @@ CREATE TABLE complaint (
 -- Table structure for table `transaction`
 --
 
-CREATE TABLE transaction (
+CREATE TABLE transactions (
                              id serial NOT NULL,
-                             bid int NOT NULL,
+                             bill_id int NOT NULL,
                              payable decimal(10,2) NOT NULL,
                              pdate date DEFAULT NULL,
-                             status varchar(10) NOT NULL
+                             status varchar(10) NOT NULL,
+                             active varchar NOT NULL,
+                             created date NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -62,10 +67,12 @@ CREATE TABLE transaction (
 --
 
 CREATE TABLE unitsrate (
-                           sno int DEFAULT NULL,
+                           id serial NOT NULL,
                            twohundred int NOT NULL,
                            fivehundred int NOT NULL,
-                           thousand int NOT NULL
+                           thousand int NOT NULL,
+                           active varchar NOT NULL,
+                           created date NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -76,11 +83,16 @@ CREATE TABLE unitsrate (
 
 CREATE TABLE users (
                        id serial NOT NULL,
-                       name varchar(40) NOT NULL,
+                       first_name varchar(40) NOT NULL,
+                       last_name varchar(40) NOT NULL,
+                       patronymic varchar(40),
+                       iin varchar(40),
                        email varchar(40) NOT NULL,
-                       phone varchar(255) NOT NULL,
-                       pass varchar(20) NOT NULL,
-                       address varchar(100) NOT NULL
+                       phone_number varchar(255) NOT NULL,
+                       password varchar(20) NOT NULL,
+                       address varchar(100) NOT NULL,
+                       active varchar NOT NULL,
+                       created date NOT NULL
 );
 
 --
@@ -121,39 +133,6 @@ ALTER TABLE transaction
 --
 ALTER TABLE users
     ADD PRIMARY KEY (id);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE admin
-    MODIFY id int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `bill`
---
-ALTER TABLE `bill`
-    MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
---
--- AUTO_INCREMENT for table `complaint`
---
-ALTER TABLE `complaint`
-    MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
---
--- AUTO_INCREMENT for table `transaction`
---
-ALTER TABLE `transaction`
-    MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-    MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
---
--- Constraints for dumped tables
---
 
 --
 -- Constraints for table `bill`
