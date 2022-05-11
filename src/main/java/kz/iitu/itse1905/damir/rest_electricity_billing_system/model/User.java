@@ -57,12 +57,14 @@ public class User extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.EAGER,
             mappedBy="user")
+    @JsonManagedReference
     @EqualsAndHashCode.Exclude
     private Set<Bill> bills;
 
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.EAGER,
             mappedBy="user")
+    @JsonManagedReference
     @EqualsAndHashCode.Exclude
     private Set<Complaint> complaints;
 }
