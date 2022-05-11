@@ -42,6 +42,7 @@ public class Bill extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.EAGER,
             mappedBy="bill")
+    @EqualsAndHashCode.Exclude
     private Set<Transaction> transactions;
 
     @ManyToOne(fetch = FetchType.LAZY)
