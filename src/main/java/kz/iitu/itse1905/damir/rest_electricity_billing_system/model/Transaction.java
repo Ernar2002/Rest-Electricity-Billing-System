@@ -20,7 +20,7 @@ public class Transaction extends BaseEntity {
     @Column(nullable = false)
     private double payable;
 
-    @Column(name = "pdate", nullable = false)
+    @Column(name = "pdate")
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date pDate;
 
