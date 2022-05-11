@@ -24,8 +24,9 @@ public class UserDto {
     private String phoneNumber;
     private String iin;
     private String address;
-    private List<Bill> bills;
-    private List<Complaint> complaints;
+    private Set<Bill> bills;
+    private Set<Complaint> complaints;
+    private Set<Role> roles;
 
     public static UserDto fromUser(User user){
         UserDto userDto = new UserDto();
@@ -38,6 +39,7 @@ public class UserDto {
         userDto.setAddress(user.getAddress());
         userDto.setBills(user.getBills());
         userDto.setComplaints(user.getComplaints());
+        userDto.setRoles(user.getRoles());
 
         return userDto;
     }
