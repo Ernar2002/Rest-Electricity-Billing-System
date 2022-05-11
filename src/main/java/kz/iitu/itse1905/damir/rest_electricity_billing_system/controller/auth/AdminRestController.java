@@ -31,7 +31,7 @@ public class AdminRestController {
         this.complaintService = complaintService;
     }
 
-    @GetMapping("/get-user")
+    @GetMapping("/user")
     public ResponseEntity<UserDto> getUserByEmail(@RequestParam String email){
 
         if(email == null){
