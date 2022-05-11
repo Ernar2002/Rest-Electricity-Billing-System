@@ -93,3 +93,23 @@ VALUES
 
 INSERT INTO unitsrate (id, twohundred, fivehundred, thousand, active, created) VALUES
     (1, 2, 5, 10, 'ACTIVE', '2022-05-10');
+
+INSERT INTO roles (id, active, created, name)
+VALUES
+    (1, 'ACTIVE','2022-05-11','ADMIN'),
+    (2, 'ACTIVE','2022-05-11', 'USER')
+
+    INSERT INTO user_roles (user_id, role_id)
+VALUES
+    (1,2),
+    (2,2),
+    (3,2),
+    (4,2),
+    (5,2),
+    (6,2),
+    (7,2),
+    (8,2),
+    (9,2),
+    (10,2),
+    (11,2)
+
