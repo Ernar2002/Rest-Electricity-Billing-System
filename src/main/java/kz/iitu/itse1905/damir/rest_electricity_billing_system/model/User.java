@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import kz.iitu.itse1905.damir.rest_electricity_billing_system.model.base.BaseEntity;
 import lombok.*;
+
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -54,8 +56,8 @@ public class User extends BaseEntity {
     private Set<Role> roles;
 
     @OneToMany(mappedBy="user")
-    private Set<Bill> bills;
+    private List<Bill> bills;
 
     @OneToMany(mappedBy="user")
-    private Set<Complaint> complaints;
+    private List<Complaint> complaints;
 }

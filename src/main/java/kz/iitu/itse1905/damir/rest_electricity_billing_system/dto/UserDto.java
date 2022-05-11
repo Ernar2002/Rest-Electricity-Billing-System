@@ -12,6 +12,7 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -23,6 +24,8 @@ public class UserDto {
     private String phoneNumber;
     private String iin;
     private String address;
+    private List<Bill> bills;
+    private List<Complaint> complaints;
 
     public static UserDto fromUser(User user){
         UserDto userDto = new UserDto();
@@ -33,6 +36,8 @@ public class UserDto {
         userDto.setPhoneNumber(user.getPhoneNumber());
         userDto.setIin(user.getIin());
         userDto.setAddress(user.getAddress());
+        userDto.setBills(user.getBills());
+        userDto.setComplaints(user.getComplaints());
 
         return userDto;
     }
