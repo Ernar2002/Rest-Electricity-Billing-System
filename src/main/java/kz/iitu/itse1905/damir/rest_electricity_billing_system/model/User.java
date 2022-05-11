@@ -1,17 +1,16 @@
 package kz.iitu.itse1905.damir.rest_electricity_billing_system.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import kz.iitu.itse1905.damir.rest_electricity_billing_system.model.base.BaseEntity;
 import lombok.*;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "users")
@@ -55,9 +54,15 @@ public class User extends BaseEntity {
     @EqualsAndHashCode.Exclude
     private Set<Role> roles;
 
-    @OneToMany(mappedBy="user")
-    private List<Bill> bills;
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            mappedBy="user")
+    @EqualsAndHashCode.Exclude
+    private Set<Bill> bills;
 
-    @OneToMany(mappedBy="user")
-    private List<Complaint> complaints;
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            mappedBy="user")
+    @EqualsAndHashCode.Exclude
+    private Set<Complaint> complaints;
 }
