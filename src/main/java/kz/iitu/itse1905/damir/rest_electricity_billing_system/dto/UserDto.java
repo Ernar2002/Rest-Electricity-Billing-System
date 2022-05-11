@@ -12,6 +12,7 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -24,9 +25,9 @@ public class UserDto {
     private String phoneNumber;
     private String iin;
     private String address;
-    private Set<Bill> bills;
-    private Set<Complaint> complaints;
-    private Set<Role> roles;
+    private Set<BillDto> bills;
+    private Set<ComplaintDto> complaints;
+    private Set<RoleDto> roles;
 
     public static UserDto fromUser(User user){
         UserDto userDto = new UserDto();
@@ -37,9 +38,36 @@ public class UserDto {
         userDto.setPhoneNumber(user.getPhoneNumber());
         userDto.setIin(user.getIin());
         userDto.setAddress(user.getAddress());
-        userDto.setBills(user.getBills());
-        userDto.setComplaints(user.getComplaints());
-        userDto.setRoles(user.getRoles());
+
+        //transfer complaint to dto
+        Set<Complaint> complaints = user.getComplaints();
+        Set<ComplaintDto> complaintDtos = new HashSet<>();
+
+        for(Complaint complaint: complaints){
+            complaintDtos.add(ComplaintDto.fromComplaint(complaint));
+        }
+
+        userDto.setComplaints(complaintDtos);
+
+        //transfer bills to dto
+        Set<Bill> bills = user.getBills();
+        Set<BillDto> billDtos = new HashSet<>();
+
+        for(Bill bill: bills){
+            billDtos.add(BillDto.fromBill(bill));
+        }
+
+        userDto.setBills(billDtos);
+
+        //transfer role to dto
+        Set<Role> roles = user.getRoles();
+        Set<RoleDto> roleDtos = new HashSet<>();
+
+        for(Role role: roles){
+            roleDtos.add(RoleDto.fromRole(role));
+        }
+
+        userDto.setRoles(roleDtos);
 
         return userDto;
     }
