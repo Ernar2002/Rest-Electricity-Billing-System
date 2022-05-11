@@ -42,8 +42,7 @@ public class Bill extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.EAGER,
             mappedBy="bill")
-    @JsonIgnore
-    private List<Transaction> transactions;
+    private Set<Transaction> transactions;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id", nullable=false)
