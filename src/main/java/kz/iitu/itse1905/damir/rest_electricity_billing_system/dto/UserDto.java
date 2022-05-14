@@ -19,6 +19,7 @@ import java.util.Set;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserDto {
+    private Long id;
     private String email;
     private String firstName;
     private String lastName;
@@ -32,6 +33,7 @@ public class UserDto {
     public static UserDto fromUser(User user){
         UserDto userDto = new UserDto();
 
+        userDto.setId(user.getId());
         userDto.setEmail(user.getEmail());
         userDto.setFirstName(user.getFirstName());
         userDto.setLastName(user.getLastName());

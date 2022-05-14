@@ -15,6 +15,7 @@ import java.util.Set;
 
 @Data
 public class BillDto {
+    private Long id;
     private int units;
     private double amount;
     private EStatus status;
@@ -27,6 +28,7 @@ public class BillDto {
     public static BillDto fromBill(Bill bill){
         BillDto billDto = new BillDto();
 
+        billDto.setId(bill.getId());
         billDto.setUnits(bill.getUnits());
         billDto.setAmount(bill.getAmount());
         billDto.setStatus(bill.getStatus());

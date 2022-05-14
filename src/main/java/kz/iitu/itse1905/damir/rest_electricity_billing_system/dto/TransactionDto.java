@@ -12,6 +12,7 @@ import java.util.Date;
 
 @Data
 public class TransactionDto {
+    private Long id;
     private double payable;
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date pDate;
@@ -20,6 +21,7 @@ public class TransactionDto {
     public static TransactionDto fromTransaction(Transaction transaction){
         TransactionDto transactionDto = new TransactionDto();
 
+        transactionDto.setId(transaction.getId());
         transactionDto.setPayable(transaction.getPayable());
         transactionDto.setPDate(transaction.getPDate());
         transactionDto.setStatus(transaction.getStatus());

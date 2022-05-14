@@ -12,6 +12,7 @@ import java.util.Date;
 
 @Data
 public class ComplaintDto {
+    private Long id;
     private String text;
     private EActive active;
     private Date created;
@@ -19,6 +20,7 @@ public class ComplaintDto {
     public static ComplaintDto fromComplaint(Complaint complaint){
         ComplaintDto complaintDto = new ComplaintDto();
 
+        complaintDto.setId(complaint.getId());
         complaintDto.setText(complaint.getText());
         complaintDto.setActive(complaint.getActive());
         complaintDto.setCreated(complaint.getCreated());
