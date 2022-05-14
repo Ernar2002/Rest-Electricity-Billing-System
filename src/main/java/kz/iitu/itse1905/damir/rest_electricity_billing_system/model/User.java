@@ -71,4 +71,8 @@ public class User extends BaseEntity {
     public void addBill(Bill bill){
         bills.add(bill);
     }
+
+    public void deleteBill(Bill bill){
+        bills.remove(bill);
+    }
 }
