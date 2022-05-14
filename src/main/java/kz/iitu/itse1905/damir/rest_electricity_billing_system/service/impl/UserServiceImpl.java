@@ -32,8 +32,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(User user) {
         Set<Role> roles = new HashSet<>();
-
         roles.add(roleRepository.findByName("ROLE_USER"));
+
+        if(user.getRoles() == null) {
+            user.setRoles(roles);
+        }
 
         if (user.getActive() == null) {
             user.setActive(EActive.ACTIVE);
@@ -43,9 +46,10 @@ public class UserServiceImpl implements UserService {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
 
-        user.setRoles(roles);
-        Date date = new Date();
-        user.setCreated(date);
+        if(user.getCreated() == null) {
+            Date date = new Date();
+            user.setCreated(date);
+        }
         userRepository.save(user);
 
         log.info("In UserServiceImpl method save: {} successfully saved", user);
@@ -58,7 +62,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getById(Long id) {
-        return userRepository.getById(id);
+        return userRepository.findById(id).get();
     }
 
     @Override
