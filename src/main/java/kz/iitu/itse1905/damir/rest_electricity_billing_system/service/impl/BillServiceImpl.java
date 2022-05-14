@@ -1,9 +1,6 @@
 package kz.iitu.itse1905.damir.rest_electricity_billing_system.service.impl;
 
-import kz.iitu.itse1905.damir.rest_electricity_billing_system.model.Bill;
-import kz.iitu.itse1905.damir.rest_electricity_billing_system.model.EActive;
-import kz.iitu.itse1905.damir.rest_electricity_billing_system.model.EStatus;
-import kz.iitu.itse1905.damir.rest_electricity_billing_system.model.User;
+import kz.iitu.itse1905.damir.rest_electricity_billing_system.model.*;
 import kz.iitu.itse1905.damir.rest_electricity_billing_system.repository.BillRepository;
 import kz.iitu.itse1905.damir.rest_electricity_billing_system.repository.UserRepository;
 import kz.iitu.itse1905.damir.rest_electricity_billing_system.service.BillService;
@@ -28,7 +25,15 @@ public class BillServiceImpl implements BillService {
     public void addBillToUser(BillRequest request, User user) {
         Bill bill = new Bill();
         bill.setUnits(request.getUnits());
-        bill.setAmount(request.getAmount());
+
+        if(request.getTariff().equals(ETariff.TWOHUNDRED)){
+            bill.setAmount(request.getUnits()*2);
+        } else if(request.getTariff().equals(ETariff.FIVEHUNDRED)){
+            bill.setAmount(request.getUnits()*5);
+        } else {
+            bill.setAmount(request.getUnits()*10);
+        }
+
         bill.setStartDate(request.getStartDate());
         bill.setEndDate(request.getEndDate());
         user.addBill(bill);
@@ -47,7 +52,6 @@ public class BillServiceImpl implements BillService {
         user.deleteBill(getById(billId));
         delete(billId);
     }
-
 
     @Override
     public void save(Bill bill) {
@@ -74,7 +78,7 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public List<Bill> getAll() {
-        return null;
+        return billRepository.findAll();
     }
 
     @Override
