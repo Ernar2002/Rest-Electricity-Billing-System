@@ -67,4 +67,8 @@ public class User extends BaseEntity {
     @JsonManagedReference
     @EqualsAndHashCode.Exclude
     private Set<Complaint> complaints;
+
+    public void addBill(Bill bill){
+        bills.add(bill);
+    }
 }
