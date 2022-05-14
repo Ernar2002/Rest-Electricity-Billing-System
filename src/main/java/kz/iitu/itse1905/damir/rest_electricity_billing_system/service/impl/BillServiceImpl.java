@@ -25,7 +25,7 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
-    public void saveBill(BillRequest request, User user) {
+    public void addBillToUser(BillRequest request, User user) {
         Bill bill = new Bill();
         bill.setUnits(request.getUnits());
         bill.setAmount(request.getAmount());
@@ -40,6 +40,12 @@ public class BillServiceImpl implements BillService {
 
         billRepository.save(bill);
 
+    }
+
+    @Override
+    public void deleteBillFromUser(Long billId, User user) {
+        user.deleteBill(getById(billId));
+        delete(billId);
     }
 
 
@@ -58,12 +64,12 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public Bill getById(Long id) {
-        return null;
+        return billRepository.findById(id).get();
     }
 
     @Override
     public void delete(Long id) {
-
+        billRepository.delete(getById(id));
     }
 
     @Override

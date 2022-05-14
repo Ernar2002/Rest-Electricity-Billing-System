@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface BillService extends BaseService<Bill>{
     List<Bill> getBillsOfUser(User user);
-    void saveBill(BillRequest request, User user);
+    void addBillToUser(BillRequest request, User user);
+    void deleteBillFromUser(Long billId, User user);
 }
