@@ -9,6 +9,8 @@ import kz.iitu.itse1905.damir.rest_electricity_billing_system.model.User;
 import kz.iitu.itse1905.damir.rest_electricity_billing_system.service.BillService;
 import kz.iitu.itse1905.damir.rest_electricity_billing_system.service.ComplaintService;
 import kz.iitu.itse1905.damir.rest_electricity_billing_system.service.UserService;
+import kz.iitu.itse1905.damir.rest_electricity_billing_system.utils.request.BillRequest;
+import kz.iitu.itse1905.damir.rest_electricity_billing_system.utils.response.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -95,5 +97,37 @@ public class AdminRestController {
         }
 
         return new ResponseEntity<>(billDtos, HttpStatus.OK);
+    }
+
+    @PutMapping("/user/{userId}/add-bill")
+    public ResponseEntity<?> addBillToUser(@PathVariable("userId") Long userId, @RequestBody BillRequest request){
+        if(userId == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        User user = userService.getById(userId);
+        if(user == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        billService.addBillToUser(request, user);
+
+        return new ResponseEntity<>(new MessageResponse("Bill added successfully"), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/user/{userId}/delete-bill/{billId}")
+    public ResponseEntity<?> deleteBillFromUser(@PathVariable("userId") Long userId, @PathVariable("billId") Long billId){
+        if(userId == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        User user = userService.getById(userId);
+        if(user == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        billService.deleteBillFromUser(billId, user);
+
+        return new ResponseEntity<>(new MessageResponse("Bill removed successfully"), HttpStatus.OK);
     }
 }
