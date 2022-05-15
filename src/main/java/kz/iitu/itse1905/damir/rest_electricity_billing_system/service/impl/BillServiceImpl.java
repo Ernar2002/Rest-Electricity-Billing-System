@@ -2,9 +2,11 @@ package kz.iitu.itse1905.damir.rest_electricity_billing_system.service.impl;
 
 import kz.iitu.itse1905.damir.rest_electricity_billing_system.model.*;
 import kz.iitu.itse1905.damir.rest_electricity_billing_system.repository.BillRepository;
+import kz.iitu.itse1905.damir.rest_electricity_billing_system.repository.ComplaintRepository;
 import kz.iitu.itse1905.damir.rest_electricity_billing_system.repository.UserRepository;
 import kz.iitu.itse1905.damir.rest_electricity_billing_system.service.BillService;
 import kz.iitu.itse1905.damir.rest_electricity_billing_system.utils.request.BillRequest;
+import kz.iitu.itse1905.damir.rest_electricity_billing_system.utils.request.ComplaintRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +17,18 @@ import java.util.List;
 public class BillServiceImpl implements BillService {
 
     private final BillRepository billRepository;
+    private final ComplaintRepository complaintRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public BillServiceImpl(BillRepository billRepository) {
+    public BillServiceImpl(
+            BillRepository billRepository,
+            ComplaintRepository complaintRepository,
+            UserRepository userRepository
+    ) {
         this.billRepository = billRepository;
+        this.complaintRepository = complaintRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -43,6 +53,7 @@ public class BillServiceImpl implements BillService {
         Date currentDate = new Date();
         bill.setCreated(currentDate);
 
+        userRepository.save(user);
         billRepository.save(bill);
 
     }
@@ -59,6 +70,19 @@ public class BillServiceImpl implements BillService {
         bill.setStatus(EStatus.PROCESSED);
 
         billRepository.save(bill);
+    }
+
+    @Override
+    public void addComplaint(ComplaintRequest request, User user) {
+        Complaint complaint = new Complaint();
+        complaint.setText(request.getText());
+        user.addComplaint(complaint);
+        complaint.setUser(user);
+        complaint.setCreated(new Date());
+        complaint.setActive(EActive.ACTIVE);
+
+        userRepository.save(user);
+        complaintRepository.save(complaint);
     }
 
 

@@ -75,4 +75,12 @@ public class User extends BaseEntity {
     public void deleteBill(Bill bill){
         bills.remove(bill);
     }
+
+    public void addComplaint(Complaint complaint){
+        complaints.add(complaint);
+    }
+
+    public void removeComplaint(Complaint complaint) {
+        complaints.remove(complaint);
+    }
 }
