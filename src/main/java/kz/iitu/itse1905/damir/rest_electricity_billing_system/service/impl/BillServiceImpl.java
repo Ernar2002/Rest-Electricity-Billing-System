@@ -54,6 +54,15 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
+    public void payForBill(Long billId, User user) {
+        Bill bill = getById(billId);
+        bill.setStatus(EStatus.PROCESSED);
+
+        billRepository.save(bill);
+    }
+
+
+    @Override
     public void save(Bill bill) {
         bill.setStatus(EStatus.PENDING);
         bill.setActive(EActive.ACTIVE);

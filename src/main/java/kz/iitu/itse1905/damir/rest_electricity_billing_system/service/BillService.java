@@ -10,4 +10,5 @@ public interface BillService extends BaseService<Bill>{
     List<Bill> getBillsOfUser(User user);
     void addBillToUser(BillRequest request, User user);
     void deleteBillFromUser(Long billId, User user);
+    void payForBill(Long billId, User user);
 }

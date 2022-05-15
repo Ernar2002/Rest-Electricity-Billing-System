@@ -39,7 +39,7 @@ public class Bill extends BaseEntity {
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date endDate;
 
-    @OneToMany(cascade = CascadeType.ALL,
+    @OneToMany(cascade = CascadeType.MERGE,
             fetch = FetchType.EAGER,
             mappedBy="bill")
     @EqualsAndHashCode.Exclude
@@ -50,5 +50,9 @@ public class Bill extends BaseEntity {
     @JsonBackReference
     @EqualsAndHashCode.Exclude
     private User user;
+
+    public void addTransactions(Transaction transaction){
+        transactions.add(transaction);
+    }
 
 }
