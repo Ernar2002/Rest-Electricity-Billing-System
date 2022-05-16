@@ -18,6 +18,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 public class    AppConfig extends WebSecurityConfigurerAdapter {
 
     private static final String ADMIN_ENDPOINT = "/api/admin/**";
+    private static final String FILE_UPLOAD_ENDPOINT = "/api/excel/**";
     private static final String AUTH_ENDPOINT = "/api/auth/**";
 
     private final JwtUtil jwtUtil;
@@ -42,6 +43,7 @@ public class    AppConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                     .antMatchers(ADMIN_ENDPOINT).hasAuthority("ADMIN")
+                    .antMatchers(FILE_UPLOAD_ENDPOINT).hasAuthority("ADMIN")
                     .antMatchers(AUTH_ENDPOINT).permitAll()
                     .anyRequest().hasAuthority("USER")
                 .and()
