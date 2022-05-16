@@ -2,7 +2,7 @@ package kz.iitu.itse1905.damir.rest_electricity_billing_system.controller.admin;
 
 import kz.iitu.itse1905.damir.rest_electricity_billing_system.helper.ExcelHelper;
 import kz.iitu.itse1905.damir.rest_electricity_billing_system.model.User;
-import kz.iitu.itse1905.damir.rest_electricity_billing_system.service.ExcelService;
+import kz.iitu.itse1905.damir.rest_electricity_billing_system.service.impl.ExcelServiceImpl;
 import kz.iitu.itse1905.damir.rest_electricity_billing_system.utils.response.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,14 +17,14 @@ import java.util.List;
 public class FileUploadController {
 
     @Autowired
-    ExcelService excelService;
+    ExcelServiceImpl excelServiceImpl;
 
     @PostMapping("/upload")
     public ResponseEntity<MessageResponse> uploadFile(@RequestParam("file") MultipartFile file) {
         String message = "";
         if (ExcelHelper.hasExcelFormat(file)) {
             try {
-                excelService.save(file);
+                excelServiceImpl.save(file);
                 message = "Uploaded the file successfully: " + file.getOriginalFilename();
                 return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse(message));
             } catch (Exception e) {
@@ -39,7 +39,7 @@ public class FileUploadController {
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllTutorials() {
         try {
-            List<User> users = excelService.getAllUsers();
+            List<User> users = excelServiceImpl.getAllUsers();
             if (users.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
