@@ -1,13 +1,16 @@
 package kz.iitu.itse1905.damir.rest_electricity_billing_system.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 @Configuration
 @ConfigurationProperties(prefix = "database")
+@PropertySource("classpath:/application.properties")
 public class DatabaseProperties {
     public static class Server {
 
@@ -42,14 +45,15 @@ public class DatabaseProperties {
         }
     }
 
+    @Value("spring.datasource.username")
     private String username;
+    @Value("spring.datasource.password")
     private String password;
     private Server server;
 
     public String getUsername() {
         return username;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }
