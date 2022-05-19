@@ -1,0 +1,450 @@
+{
+	"info": {
+		"_postman_id": "b2f02e13-82f1-45fb-b707-adfb50260913",
+		"name": "Electricity_billing_system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Get user by email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6W3siaWQiOjEsImNyZWF0ZWQiOjE2NTI1NTEyMDAwMDAsImFjdGl2ZSI6IkFDVElWRSIsIm5hbWUiOiJBRE1JTiJ9XSwiaWF0IjoxNjUyOTY4MjgwLCJleHAiOjE2NTI5NzE4ODB9.zPS27JgqpgK6VlkIESJXi2dOOg17hjARYpSWyyRhwix0LrSKbyVe2-zMNW-1zHFvievYVsBCC4qe1y4MYGJJVA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/admin/user?email=erjan.ernar@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"user"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "erjan.ernar@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get complaints of user by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6W3siaWQiOjEsImNyZWF0ZWQiOjE2NTI1NTEyMDAwMDAsImFjdGl2ZSI6IkFDVElWRSIsIm5hbWUiOiJBRE1JTiJ9XSwiaWF0IjoxNjUyOTY4MjgwLCJleHAiOjE2NTI5NzE4ODB9.zPS27JgqpgK6VlkIESJXi2dOOg17hjARYpSWyyRhwix0LrSKbyVe2-zMNW-1zHFvievYVsBCC4qe1y4MYGJJVA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/admin/user/1/complaints",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"1",
+								"complaints"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get bills of user by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6W3siaWQiOjEsImNyZWF0ZWQiOjE2NTI1NTEyMDAwMDAsImFjdGl2ZSI6IkFDVElWRSIsIm5hbWUiOiJBRE1JTiJ9XSwiaWF0IjoxNjUyNTQ0MTEzLCJleHAiOjE2NTI1NDc3MTN9._9w8jmhEv90kATQlK_75VjXl60DVqj75eoWLyVkY-Re3CT7-a-ZwUgKaMWlmEftAw-cFpQMlaO068B1MDEdbZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/admin/user/1/bills",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"1",
+								"bills"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add bill to user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6W3siaWQiOjEsImNyZWF0ZWQiOjE2NTI1NTEyMDAwMDAsImFjdGl2ZSI6IkFDVElWRSIsIm5hbWUiOiJBRE1JTiJ9XSwiaWF0IjoxNjUyNTk0MTUzLCJleHAiOjE2NTI1OTc3NTN9.iAQnrDpZK03nZbxFQnLKDzn3vrnuy01wkdFdNNGY52H_hOIqLiHIyPnhGwTCMc8JQuzuPJwqSACKji41Q-JyEw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"units\": 40,\r\n    \"tariff\": \"THOUSAND\",\r\n    \"startDate\": \"2021-05-19\",\r\n    \"endDate\": \"2021-06-19\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/user/1/add-bill",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"1",
+								"add-bill"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete bill from user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/admin/user/1/delete-bill/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"1",
+								"delete-bill",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Import users from Excel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6W3siaWQiOjEsImNyZWF0ZWQiOjE2NTI1NTEyMDAwMDAsImFjdGl2ZSI6IkFDVElWRSIsIm5hbWUiOiJBRE1JTiJ9XSwiaWF0IjoxNjUyNjk4MTEzLCJleHAiOjE2NTI3MDE3MTN9.IpzSr0ZqEle2Y2mZ3ynM2h9NJWG8GZ5RltCL2Uo5Th2l-8xJUnJ7X9gxMgaLHk3Z3fVKjkBAPQioaLBLQnNlBg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-disposition",
+								"value": "attachment; filename=users.xlsx",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/vnd.ms-excel",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/77051/Desktop/users.xlsx"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/excel/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"excel",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get bills",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlcmphbi5lcm5hckBnbWFpbC5jb20iLCJyb2xlcyI6W3siaWQiOjIsImNyZWF0ZWQiOjE2NTI1NTEyMDAwMDAsImFjdGl2ZSI6IkFDVElWRSIsIm5hbWUiOiJVU0VSIn1dLCJpYXQiOjE2NTI1OTQwODYsImV4cCI6MTY1MjU5NzY4Nn0.gMaHiRTlD90Z1jZuGU_z0kklOqoFrZYMh7b9IY760mFXZvFWKGT46_IP1em0d9zvi1JeqJTv6P5UaDyut_pLEQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/bill/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"bill",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pay for bill",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlcmphbi5lcm5hckBnbWFpbC5jb20iLCJyb2xlcyI6W3siaWQiOjIsImNyZWF0ZWQiOjE2NTI1NTEyMDAwMDAsImFjdGl2ZSI6IkFDVElWRSIsIm5hbWUiOiJVU0VSIn1dLCJpYXQiOjE2NTI1OTQwODYsImV4cCI6MTY1MjU5NzY4Nn0.gMaHiRTlD90Z1jZuGU_z0kklOqoFrZYMh7b9IY760mFXZvFWKGT46_IP1em0d9zvi1JeqJTv6P5UaDyut_pLEQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/bill/4/pay?payable=400",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"bill",
+								"4",
+								"pay"
+							],
+							"query": [
+								{
+									"key": "payable",
+									"value": "400"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Give complaint",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlcmphbi5lcm5hckBnbWFpbC5jb20iLCJyb2xlcyI6W3siaWQiOjIsImNyZWF0ZWQiOjE2NTI1NTEyMDAwMDAsImFjdGl2ZSI6IkFDVElWRSIsIm5hbWUiOiJVU0VSIn1dLCJpYXQiOjE2NTI2MDE1MTgsImV4cCI6MTY1MjYwNTExOH0.LvmHLTHJUuebba53TDXY1e-rWIlCowrqJa6UriKBTV9Fx79y7gn8SbLdRbzGeUtScM6bymuxHdh1cRfbq2avGA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\":\"Incorrect amount\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/complaint/give-complaint",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"complaint",
+								"give-complaint"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get complaints",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlcmphbi5lcm5hckBnbWFpbC5jb20iLCJyb2xlcyI6W3siaWQiOjIsImNyZWF0ZWQiOjE2NTI1NTEyMDAwMDAsImFjdGl2ZSI6IkFDVElWRSIsIm5hbWUiOiJVU0VSIn1dLCJpYXQiOjE2NTI2MDExMTMsImV4cCI6MTY1MjYwNDcxM30.-VR_DsnXaC_noAMynQnRlvfBIyyrViKy5fCNlLrMH38DjIHa7DOU-KMBrGomL2x0cHriMILpIw_u6eTt_qIuUQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/complaint/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"complaint",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Guest",
+			"item": [
+				{
+					"name": "Sign up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"erjan.ernar@gmail.com\",\r\n    \"password\":\"ernar123\",\r\n    \"firstName\":\"Yernar\",\r\n    \"lastName\":\"Yerzhan\",\r\n    \"phoneNumber\":\"87002001010\",\r\n    \"iin\":\"000101100100\",\r\n    \"address\":\"Astana\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"admin@gmail.com\",\r\n    \"password\":\"admin123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
