@@ -8,10 +8,17 @@ import kz.iitu.itse1905.damir.rest_electricity_billing_system.repository.UserRep
 import kz.iitu.itse1905.damir.rest_electricity_billing_system.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -21,6 +28,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
@@ -83,5 +91,58 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByIIN(String iin) {
         return userRepository.findUserByIin(iin);
+    }
+
+    @Scheduled(fixedDelay = 1000)
+    public void scheduleFixedDelayTask() {
+        System.out.println(
+                "Fixed delay task - " + System.currentTimeMillis() / 1000);
+    }
+
+    @EnableAsync
+    public class ScheduledFixedRateExample {
+        @Async
+        @Scheduled(fixedRate = 1000)
+        public void scheduleFixedRateTaskAsync() {
+            List<User> users = getAll();
+            LocalDateTime date = LocalDateTime.now();
+            int seconds = date.toLocalTime().getSecond();
+
+            users.forEach(user -> {
+                user.setEmail("damir@gmail.com" + seconds);
+                save(user);
+                log.info("Hero id updated --> " + user);
+            });
+            log.info("Fixed delay task - " + seconds);
+        }
+
+    }
+
+    @Scheduled(fixedDelay = 1000, initialDelay = 1000)
+    public void scheduleFixedRateWithInitialDelayTask() {
+        String name = "damir@gmail.com42";
+        Optional<User> user = Optional.ofNullable(findByEmail(name));
+
+        if(user.isPresent()) {
+            log.info("User with damir@gmail.com42 name found: " + user);
+        } else {
+            log.error("User not found");
+        }
+
+        long now = System.currentTimeMillis() / 1000;
+        log.info("Fixed rate task with one second initial delay - " + now);
+    }
+
+    @Bean
+    public TaskScheduler taskScheduler() {
+        ThreadPoolTaskScheduler threadPoolTaskScheduler = new ThreadPoolTaskScheduler();
+        threadPoolTaskScheduler.setPoolSize(5);
+        threadPoolTaskScheduler.setThreadNamePrefix("ThreadPoolTaskScheduler");
+        return threadPoolTaskScheduler;
+    }
+
+    @Scheduled(cron = "*/5 * * * * *")
+    public void currentTime() {
+        log.info("Current Time      = {}", dateFormat.format(new Date()));
     }
 }
