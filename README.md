@@ -17,6 +17,7 @@ For building and running the application you need:
 __Running this application locally__
 
 ---
+Firstly you should `create a database` from your PgAdmin4 and `set url of db to properties`. \
 There are several ways to run a Spring Boot application on your local machine. One way is to execute the `main` method in the `kz.iitu.itse1905.damir.rest_electricity_billing_system.RestElectricityBillingSystemApplication` class from your IDE.
 
 Alternatively you can use the Spring Boot Maven plugin like so:
