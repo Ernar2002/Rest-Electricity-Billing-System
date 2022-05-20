@@ -1,5 +1,4 @@
 # Electricity Billing System #
-__Damir Zhumabekov ITSE1905__
 
 __Objectives__
 
